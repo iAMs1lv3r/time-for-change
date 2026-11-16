@@ -1,2 +1,2 @@
 # time-for-change
-Multi-car maintenance and mileage tracker stored in browser
+Vehicle maintenance tracker featuring consumables list, mileage tracking, and replacement schedules.
