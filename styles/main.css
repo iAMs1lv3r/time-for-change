@@ -1,21 +1,18 @@
-/* Палитра Tokyo Night */
 :root {
-  --bg-dark: #16161e;
   --bg-main: #1a1b26;
-  --bg-card: #24283b;
-  --bg-card-hover: #292e42;
-  --border-color: #414868;
+  --bg-surface: #24283b;
+  --bg-surface-hover: #2b3047;
+  --bg-muted: #16161e;
+  --border: #414868;
   --text-main: #c0caf5;
-  --text-muted: #565f89;
-  --text-sub: #a9b1d6;
-  
-  /* Акценты */
-  --accent-blue: #7aa2f7;
-  --accent-cyan: #7dcfff;
-  --accent-purple: #bb9af7;
-  --accent-green: #9ece6a;
-  --accent-yellow: #e0af68;
-  --accent-red: #f7768e;
+  --text-muted: #a9b1d6;
+  --text-dim: #7982a9;
+  --accent: #7aa2f7;
+  --accent-soft: #7dcfff;
+  --ok: #9ece6a;
+  --warn: #e0af68;
+  --danger: #f7768e;
+  --radius: 12px;
 }
 
 * {
@@ -25,196 +22,298 @@
 }
 
 body {
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
-  line-height: 1.5;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  padding: 2rem 1rem;
+  padding: 32px 16px;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.page-header,
+.main-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .page-header {
-  width: 100%;
-  max-width: 800px;
-  text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 24px;
 }
 
 .page-title {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--accent-blue);
-  letter-spacing: -0.02em;
+  color: var(--accent);
 }
 
 .main-container {
-  width: 100%;
-  max-width: 800px;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 32px;
 }
 
-
+/* Cars */
 .car-list {
   display: flex;
-  flex-direction: row;
-  gap: 1.25rem;
+  align-items: stretch;
+  gap: 16px;
   overflow-x: auto;
-  padding-bottom: 1rem;
-  scroll-snap-type: x mandatory; 
-
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-color) var(--bg-dark);
-}
-
-.car-list::-webkit-scrollbar {
-  height: 8px;
-}
-
-.car-list::-webkit-scrollbar-track {
-  background: var(--bg-dark);
-  border-radius: 4px;
-}
-
-.car-list::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: 4px;
-}
-
-.car-list::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-blue);
+  overflow-y: visible;
+  padding: 8px 4px 16px;
+  margin: -8px -4px 0;
 }
 
 .car-card {
-  flex: 0 0 320px;
-  scroll-snap-align: start;
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  flex: 0 0 340px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  cursor: pointer;
 }
 
 .car-card:hover {
-  border-color: var(--accent-blue);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  background: var(--bg-surface-hover);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
 }
 
-.car-card__image {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  background-color: var(--bg-dark);
-  border-bottom: 1px solid var(--border-color);
-  display: block;
+.car-card__image-placeholder {
+  height: 160px;
+  background: linear-gradient(135deg, #1f2335, #2a2f45);
+  border-bottom: 1px solid var(--border);
 }
 
 .car-card__info {
-  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 8px;
+  padding: 16px;
 }
 
 .car-card__gov-id {
   align-self: flex-start;
-  background-color: var(--bg-dark);
-  color: var(--accent-cyan);
-  border: 1px solid var(--border-color);
-  font-family: "JetBrains Mono", monospace;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-muted);
+  color: var(--accent-soft);
   font-size: 0.85rem;
   font-weight: 600;
-  padding: 0.15rem 0.5rem;
-  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-.car-card_mark-model {
+.car-card__model {
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-main);
-  margin-top: 0.25rem;
 }
 
-.car-card_name {
+.car-card__name {
   font-size: 0.95rem;
-  color: var(--accent-purple);
+  color: var(--text-muted);
 }
 
-.car-card__status {
-  margin-top: 0.5rem;
+.car-card__mileage {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.car-card__mileage-label {
   font-size: 0.85rem;
-  color: var(--accent-green);
-  font-weight: 500;
+  color: var(--text-dim);
 }
 
+.car-card__mileage-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.car-card__mileage-input {
+  width: 100%;
+  max-width: 180px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-muted);
+  color: var(--text-main);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.car-card__mileage-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(122, 162, 247, 0.2);
+}
+
+.car-card__mileage-unit {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.car-add-btn {
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  align-self: center;
+  border: 1px dashed var(--border);
+  border-radius: 50%;
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.car-add-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: #2a3047;
+}
+
+.part-add-btn {
+  min-height: 160px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.part-add-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--bg-surface-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+/* Parts */
 .parts-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1rem;
+  gap: 16px;
 }
 
 .part-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 1.25rem;
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  transition: border-color 0.2s ease;
+  gap: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  cursor: pointer;
 }
 
 .part-card:hover {
-  border-color: var(--accent-purple);
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  background: var(--bg-surface-hover);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
 }
 
-.part-card__name {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--text-main);
+.part-card__indicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.04);
 }
 
-.part-card__status {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
+.part-card__indicator--ok { background: var(--ok); }
+.part-card__indicator--warn { background: var(--warn); }
+.part-card__indicator--danger { background: var(--danger); }
 
-.part-card__status-bar {
+.part-card__progress {
   width: 100%;
   height: 8px;
-  border-radius: 4px;
-  overflow: hidden;
   border: none;
-  background-color: var(--bg-dark);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--bg-muted);
   appearance: none;
 }
 
-.part-card__status-bar::-webkit-progress-bar {
-  background-color: var(--bg-dark);
-  border-radius: 4px;
+.part-card__progress::-webkit-progress-bar {
+  background: var(--bg-muted);
+  border-radius: 999px;
 }
 
-.part-card__status-bar::-webkit-progress-value {
-  background-color: var(--accent-green);
-  border-radius: 4px;
-  transition: width 0.3s ease;
+.part-card__progress::-webkit-progress-value,
+.part-card__progress::-moz-progress-bar {
+  border-radius: 999px;
 }
 
-.part-card__status-bar::-moz-progress-bar {
-  background-color: var(--accent-green);
-  border-radius: 4px;
+.part-card__progress--ok::-webkit-progress-value,
+.part-card__progress--ok::-moz-progress-bar { background: var(--ok); }
+.part-card__progress--warn::-webkit-progress-value,
+.part-card__progress--warn::-moz-progress-bar { background: var(--warn); }
+.part-card__progress--danger::-webkit-progress-value,
+.part-card__progress--danger::-moz-progress-bar { background: var(--danger); }
+
+.part-card__name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  padding-right: 20px;
 }
 
-.part-card__status-text {
-  font-size: 0.85rem;
-  color: var(--text-sub);
+/* name styled above to allow space for indicator */
+
+.part-card__metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.part-card__metric {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.part-card__metric dt {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.part-card__metric dd {
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 20px 12px;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .car-card {
+    flex-basis: 300px;
+  }
 }
