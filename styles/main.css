@@ -1,0 +1,220 @@
+/* Палитра Tokyo Night */
+:root {
+  --bg-dark: #16161e;
+  --bg-main: #1a1b26;
+  --bg-card: #24283b;
+  --bg-card-hover: #292e42;
+  --border-color: #414868;
+  --text-main: #c0caf5;
+  --text-muted: #565f89;
+  --text-sub: #a9b1d6;
+  
+  /* Акценты */
+  --accent-blue: #7aa2f7;
+  --accent-cyan: #7dcfff;
+  --accent-purple: #bb9af7;
+  --accent-green: #9ece6a;
+  --accent-yellow: #e0af68;
+  --accent-red: #f7768e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  padding: 2rem 1rem;
+}
+
+.page-header {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  letter-spacing: -0.02em;
+}
+
+.main-container {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+
+.car-list {
+  display: flex;
+  flex-direction: row;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory; 
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) var(--bg-dark);
+}
+
+.car-list::-webkit-scrollbar {
+  height: 8px;
+}
+
+.car-list::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+  border-radius: 4px;
+}
+
+.car-list::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.car-list::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
+
+.car-card {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.car-card:hover {
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.car-card__image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  background-color: var(--bg-dark);
+  border-bottom: 1px solid var(--border-color);
+  display: block;
+}
+
+.car-card__info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.car-card__gov-id {
+  align-self: flex-start;
+  background-color: var(--bg-dark);
+  color: var(--accent-cyan);
+  border: 1px solid var(--border-color);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+}
+
+.car-card_mark-model {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-top: 0.25rem;
+}
+
+.car-card_name {
+  font-size: 0.95rem;
+  color: var(--accent-purple);
+}
+
+.car-card__status {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--accent-green);
+  font-weight: 500;
+}
+
+.parts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.part-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: border-color 0.2s ease;
+}
+
+.part-card:hover {
+  border-color: var(--accent-purple);
+}
+
+.part-card__name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.part-card__status {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.part-card__status-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: none;
+  background-color: var(--bg-dark);
+  appearance: none;
+}
+
+.part-card__status-bar::-webkit-progress-bar {
+  background-color: var(--bg-dark);
+  border-radius: 4px;
+}
+
+.part-card__status-bar::-webkit-progress-value {
+  background-color: var(--accent-green);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.part-card__status-bar::-moz-progress-bar {
+  background-color: var(--accent-green);
+  border-radius: 4px;
+}
+
+.part-card__status-text {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  display: flex;
+  justify-content: space-between;
+}
