@@ -1,33 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Time For Change</title>
 </head>
 <body>
-<h1 class="page-title">Пора менять!</h1>
-<div class="main-container">
-  <div class="car-list">
-    <div class="car-card">
-      <div>image</div>
-      <div>govID</div>
-      <div>mark-model</div>
-      <div>name</div>
-      <div>status</div>
-    </div>
-    <div>scroll-bar</div>
-  </div>
-  <div class="parts-container">
-    <div class="part-card">
-      <div>name</div>
-      <div>status
-        <div>status icon</div>
-        <div>status bar</div>
-        <div>status text</div>
-      </div>
-    </div>
-  </div>
-</div>
+
+  <header class="page-header">
+    <h1 class="page-title">Пора менять!</h1>
+  </header>
+
+  <main class="main-container">
+    <section class="car-list" aria-label="Список автомобилей">
+      <article class="car-card">
+        <img class="car-card__image" src="" alt="Изображение автомобиля">
+        <div class="car-card__info">
+          <span class="car-card__gov-id">A816OK 161</span>
+          <h2 class="car-card_mark-model">Renault Sandero Stepway I</h2>
+          <p class="car-card_name">"Ласточка" ❤️</p>
+          <span class="car-card__status">Статус</span>
+        </div>
+      </article>
+      <div class="car-list__scrollbar" aria-hidden="true"></div>
+    </section>
+    <section class="parts-container" aria-label="Состояние запчастей">
+      <article class="part-card">
+        <h3 class="part-card__name">Название детали</h3>
+        <div class="part-card__status">
+          <span class="part-card__status-icon" aria-hidden="true"></span>
+          <progress class="part-card__status-bar" value="70" max="100"></progress>
+          <span class="part-card__status-text">70% / Статус</span>
+        </div>
+      </article>
+    </section>
+  </main>
 </body>
 </html>
