@@ -1,5 +1,5 @@
 const cars = document.getElementsByClassName('car-list')
-const addCarBtn = document.getElementsById('car-add-btn')
+const addCarBtn = document.getElementById('car-add-btn')
 const addPartBtn = document.getElementById('part-add-btn')
 
 addCarBtn.addEventListener('click', () => {
