@@ -1,6 +1,11 @@
 const cars = document.getElementsByClassName('car-list')
-const addCarBtn = document.getElementsByName('car-add-btn')
+const addCarBtn = document.getElementsById('car-add-btn')
+const addPartBtn = document.getElementById('part-add-btn')
 
 addCarBtn.addEventListener('click', () => {
-    alert('hello');
+    alert('You\'ve just pressed a button to add a car');
+});
+
+addPartBtn.addEventListener('click', () => {
+    alert('You\'ve just pressed a button to add a part');
 });
