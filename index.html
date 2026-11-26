@@ -1,154 +1,102 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles/main.css">
-  <title>Time For Change</title>
-   <script src="./js/index.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time For Change</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <script type="module" src="./js/index.js"></script>
 </head>
 <body>
-  <header class="page-header">
-    <h1 class="page-title">Пора менять!</h1>
-  </header>
+    <header class="page-header">
+        <h1 class="page-title">Пора менять!</h1>
+    </header>
 
-  <main class="main-container">
-    <section class="car-list" id="car-list" aria-label="Список автомобилей">
-      <article class="car-card">
-        <div class="car-card__image-placeholder" aria-hidden="true"></div>
-        <div class="car-card__info">
-          <span class="car-card__gov-id">A816OK 161</span>
-          <h2 class="car-card__model">Renault Sandero Stepway I</h2>
-          <p class="car-card__name">"Ласточка"</p>
+    <main class="main-container">
+        <section class="car-list" id="car-list" aria-label="Список автомобилей">
+            <button class="car-add-btn" id="car-add-btn" type="button" aria-label="Добавить автомобиль" title="Добавить автомобиль">+</button>
+        </section>
 
-          <label class="car-card__mileage" for="car-mileage-1">
-            <span class="car-card__mileage-label">Пробег</span>
-            <span class="car-card__mileage-field">
-              <input id="car-mileage-1" class="car-card__mileage-input" type="number" min="0" step="1" value="124500">
-              <span class="car-card__mileage-unit">км</span>
-            </span>
-          </label>
+        <section class="parts" aria-label="Состояние запчастей">
+            <h2 class="parts__title" id="parts-title">Запчасти</h2>
+            <div class="parts-grid" id="parts-grid">
+                <button class="part-add-btn" id="part-add-btn" type="button" aria-label="Добавить деталь" title="Добавить деталь">+</button>
+            </div>
+        </section>
+    </main>
+
+    <dialog class="modal" id="car-dialog" aria-labelledby="car-dialog-title">
+        <div class="modal__inner">
+            <h2 class="modal__title" id="car-dialog-title">Новый автомобиль</h2>
+
+            <form class="modal__form" id="car-form">
+                <div class="modal__fields">
+                    <label class="field">
+                        <span class="field__label">Гос. номер</span>
+                        <input class="field__input" name="govId" placeholder="A816OK 161" required>
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Марка</span>
+                        <input class="field__input" name="brand" placeholder="Renault">
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Модель</span>
+                        <input class="field__input" name="model" placeholder="Sandero Stepway I" required>
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Кличка</span>
+                        <input class="field__input" name="name" placeholder="Ласточка">
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Пробег, км</span>
+                        <input class="field__input" name="mileage" type="number" min="0" step="1" value="0" required>
+                    </label>
+                </div>
+
+                <div class="modal__actions">
+                    <button class="btn btn--ghost" type="button" data-close>Отмена</button>
+                    <button class="btn btn--primary" type="submit">Добавить</button>
+                </div>
+            </form>
         </div>
-      </article>
+    </dialog>
 
-      <button class="car-add-btn" id="car-add-btn" type="button" aria-label="Добавить автомобиль" title="Добавить автомобиль">+</button>
-    </section>
+    <dialog class="modal" id="part-dialog" aria-labelledby="part-dialog-title">
+        <div class="modal__inner">
+            <h2 class="modal__title" id="part-dialog-title">Новая деталь</h2>
 
-    <section class="parts-container" aria-label="Состояние запчастей">
-      <article class="part-card">
-        <span class="part-card__indicator part-card__indicator--ok" aria-label="Состояние: в норме" title="В норме"></span>
-        <h3 class="part-card__name">Масло в ДВС (5W-40)</h3>
-        <progress class="part-card__progress part-card__progress--ok" value="80" max="100"></progress>
-        <dl class="part-card__metrics">
-          <div class="part-card__metric">
-            <dt>Пробег</dt>
-            <dd>8 000 км</dd>
-          </div>
-          <div class="part-card__metric">
-            <dt>Время</dt>
-            <dd>6 мес.</dd>
-          </div>
-        </dl>
-      </article>
+            <form class="modal__form" id="part-form">
+                <div class="modal__fields">
+                    <label class="field">
+                        <span class="field__label">Название детали</span>
+                        <input class="field__input" name="name" placeholder="Масло в ДВС (5W-40)" required>
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Интервал по пробегу, км</span>
+                        <input class="field__input" name="mileageLimit" type="number" min="0" step="1" required>
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Интервал по времени, мес.</span>
+                        <input class="field__input" name="timeLimit" type="number" min="0" step="1" required>
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Пробег при замене, км</span>
+                        <input class="field__input" name="replacedAtMileage" type="number" min="0" step="1" required>
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Дата замены</span>
+                        <input class="field__input" name="replacedAtDate" type="date" required>
+                    </label>
+                </div>
 
-      <article class="part-card">
-        <span class="part-card__indicator part-card__indicator--ok" aria-label="Состояние: в норме" title="В норме"></span>
-        <h3 class="part-card__name">Масляный фильтр</h3>
-        <progress class="part-card__progress part-card__progress--ok" value="80" max="100"></progress>
-        <dl class="part-card__metrics">
-          <div class="part-card__metric">
-            <dt>Пробег</dt>
-            <dd>8 000 км</dd>
-          </div>
-          <div class="part-card__metric">
-            <dt>Время</dt>
-            <dd>6 мес.</dd>
-          </div>
-        </dl>
-      </article>
+                <p class="modal__error" id="part-error" role="alert" hidden>Укажите интервал по пробегу или по времени</p>
 
-      <article class="part-card">
-        <span class="part-card__indicator part-card__indicator--warn" aria-label="Состояние: скоро замена" title="Скоро замена"></span>
-        <h3 class="part-card__name">Воздушный фильтр</h3>
-        <progress class="part-card__progress part-card__progress--warn" value="45" max="100"></progress>
-        <dl class="part-card__metrics">
-          <div class="part-card__metric">
-            <dt>Пробег</dt>
-            <dd>15 000 км</dd>
-          </div>
-          <div class="part-card__metric">
-            <dt>Время</dt>
-            <dd>12 мес.</dd>
-          </div>
-        </dl>
-      </article>
-
-      <article class="part-card">
-        <span class="part-card__indicator part-card__indicator--danger" aria-label="Состояние: требуется замена" title="Требуется замена"></span>
-        <h3 class="part-card__name">Салонный фильтр</h3>
-        <progress class="part-card__progress part-card__progress--danger" value="15" max="100"></progress>
-        <dl class="part-card__metrics">
-          <div class="part-card__metric">
-            <dt>Пробег</dt>
-            <dd>10 000 км</dd>
-          </div>
-          <div class="part-card__metric">
-            <dt>Время</dt>
-            <dd>12 мес.</dd>
-          </div>
-        </dl>
-      </article>
-
-      <article class="part-card">
-        <span class="part-card__indicator part-card__indicator--warn" aria-label="Состояние: скоро замена" title="Скоро замена"></span>
-        <h3 class="part-card__name">Передние тормозные колодки</h3>
-        <progress class="part-card__progress part-card__progress--warn" value="35" max="100"></progress>
-        <dl class="part-card__metrics">
-          <div class="part-card__metric">
-            <dt>Пробег</dt>
-            <dd>20 000 км</dd>
-          </div>
-          <div class="part-card__metric">
-            <dt>Время</dt>
-            <dd>24 мес.</dd>
-          </div>
-        </dl>
-      </article>
-
-      <article class="part-card">
-        <span class="part-card__indicator part-card__indicator--ok" aria-label="Состояние: в норме" title="В норме"></span>
-        <h3 class="part-card__name">Комплект ГРМ и помпа</h3>
-        <progress class="part-card__progress part-card__progress--ok" value="65" max="100"></progress>
-        <dl class="part-card__metrics">
-          <div class="part-card__metric">
-            <dt>Пробег</dt>
-            <dd>60 000 км</dd>
-          </div>
-          <div class="part-card__metric">
-            <dt>Время</dt>
-            <dd>60 мес.</dd>
-          </div>
-        </dl>
-      </article>
-
-      <article class="part-card">
-        <span class="part-card__indicator part-card__indicator--ok" aria-label="Состояние: в норме" title="В норме"></span>
-        <h3 class="part-card__name">Свечи зажигания</h3>
-        <progress class="part-card__progress part-card__progress--ok" value="90" max="100"></progress>
-        <dl class="part-card__metrics">
-          <div class="part-card__metric">
-            <dt>Пробег</dt>
-            <dd>30 000 км</dd>
-          </div>
-          <div class="part-card__metric">
-            <dt>Время</dt>
-            <dd>24 мес.</dd>
-          </div>
-        </dl>
-      </article>
-
-      <button class="part-add-btn" id="part-add-btn" type="button" aria-label="Добавить деталь" title="Добавить деталь">+</button>
-    </section>
-  </main>
+                <div class="modal__actions">
+                    <button class="btn btn--ghost" type="button" data-close>Отмена</button>
+                    <button class="btn btn--primary" type="submit">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
 </body>
 </html>
